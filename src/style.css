@@ -3,6 +3,7 @@ body {
   overflow: hidden;
   margin: 0px;
   height: 100%;
+  font-family: "Trebuchet MS", sans-serif;
 }
 
 #app {
@@ -13,4 +14,52 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.shoot-button-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  align-items: center;
+  display: flex;
+}
+
+.shoot-button {
+  width: 150px;
+  margin: 0 auto;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  outline: none;
+  transition: 0.05s all;
+}
+.shoot-button:active {
+  transform: scale(0.95);
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+
+.text-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 14px;
+  flex-direction: column;
+}
+.info-text {
+  color: white;
+  margin: 5px;
 }

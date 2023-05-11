@@ -24,8 +24,9 @@ export default class MainScene extends Scene {
   private pooledItem = <Array<Object3D>>[];
   private amountToPool = 200;
 
-  async load() {
+  private remainingMissilesinPool = 0;
 
+  async load() {
     let materialArray = [];
     let texture_ft = new TextureLoader().load(
       "./assets/skybox/purplenebula/purplenebula_ft.png"
@@ -70,8 +71,7 @@ export default class MainScene extends Scene {
     );
     this.missile = missileJetData.scene;
   }
-   initialize() {
-
+  initialize() {
     const ambient = new AmbientLight(0xffffff, 0.5);
     this.add(ambient);
 
@@ -83,15 +83,22 @@ export default class MainScene extends Scene {
     this.fighterJet.scale.set(0.06, 0.06, 0.06);
     this.add(this.fighterJet);
 
+
     document.onkeydown = (e) => {
       if (e.key === " ") {
         this.fireMissiles();
       }
-     };
-     
-    this.poolMissiles();
-  }
+    };
 
+    this.poolMissiles();
+    (
+      document.querySelector(".amount-to-pool") as HTMLElement
+    ).innerHTML = `${this.amountToPool}`;
+
+    (
+      document.querySelector(".shoot-button") as HTMLButtonElement
+    ).onclick = ()=> {this.fireMissiles()}
+  }
 
   update() {
     this.delta = this.clock.getDelta();
@@ -99,8 +106,14 @@ export default class MainScene extends Scene {
 
     this.moveMissile();
     this.resetMisile();
+
+    this.getRemainingMissileInPool();
+    (
+      document.querySelector(".remaining-pool-item") as HTMLElement
+    ).innerHTML = `${this.remainingMissilesinPool}`;
+    console.log(this.remainingMissilesinPool);
   }
-  
+
   private poolMissiles() {
     for (let i = 0; i < this.amountToPool; i++) {
       const missile = this.missile.clone();
@@ -193,5 +206,11 @@ export default class MainScene extends Scene {
         this.pooledItem[i].position.set(0, 0, 0);
       }
     }
+  }
+  private getRemainingMissileInPool() {
+    const remaining = this.pooledItem.filter((eachMissile) => {
+      return !eachMissile.visible;
+    });
+    this.remainingMissilesinPool = remaining.length;
   }
 }
