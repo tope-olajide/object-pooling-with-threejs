@@ -83,7 +83,6 @@ export default class MainScene extends Scene {
     this.fighterJet.scale.set(0.06, 0.06, 0.06);
     this.add(this.fighterJet);
 
-
     document.onkeydown = (e) => {
       if (e.key === " ") {
         this.fireMissiles();
@@ -95,9 +94,10 @@ export default class MainScene extends Scene {
       document.querySelector(".amount-to-pool") as HTMLElement
     ).innerHTML = `${this.amountToPool}`;
 
-    (
-      document.querySelector(".shoot-button") as HTMLButtonElement
-    ).onclick = ()=> {this.fireMissiles()}
+    (document.querySelector(".shoot-button") as HTMLButtonElement).onclick =
+      () => {
+        this.fireMissiles();
+      };
   }
 
   update() {
@@ -111,7 +111,6 @@ export default class MainScene extends Scene {
     (
       document.querySelector(".remaining-pool-item") as HTMLElement
     ).innerHTML = `${this.remainingMissilesinPool}`;
-    console.log(this.remainingMissilesinPool);
   }
 
   private poolMissiles() {

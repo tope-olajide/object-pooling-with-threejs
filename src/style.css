@@ -63,3 +63,22 @@ body {
   color: white;
   margin: 5px;
 }
+.loader-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: black;
+  justify-content: center;
+  z-index: 1;
+  position: fixed;
+  color: #fff;
+  flex-direction: column;
+}
+.loader-container img {
+  margin: 0;
+  width: 110px;
+}
+.loader-container h3 {
+  margin: 0;
+}

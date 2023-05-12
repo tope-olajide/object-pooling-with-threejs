@@ -1,12 +1,12 @@
-import { WebGLRenderer, PerspectiveCamera } from 'three';
+import { WebGLRenderer, PerspectiveCamera } from "three";
 
-import MainScene from './scenes/MainScene';
+import MainScene from "./scenes/MainScene";
 
 const width = window.innerWidth;
 const height = window.innerHeight;
 
 const renderer = new WebGLRenderer({
-  canvas: document.getElementById('app') as HTMLCanvasElement,
+  canvas: document.getElementById("app") as HTMLCanvasElement,
   antialias: true,
 });
 
@@ -21,7 +21,7 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('resize', onWindowResize);
+window.addEventListener("resize", onWindowResize);
 
 const mainScene = new MainScene();
 
@@ -33,6 +33,8 @@ const render = () => {
 
 const main = async () => {
   await mainScene.load();
+  (document.querySelector(".loader-container") as HTMLElement).style.display =
+    "none";
   mainScene.initialize();
   render();
 };
